@@ -365,27 +365,28 @@
             <!-- Deep Dive: Secondary Friction -->
             <section>
                 <div class="slide-eyebrow">Deep Dive: Broken Discovery & Cart Volatility</div>
-                <h2 class="action-title">Mandatory modal checkboxes masquerade as dead links, while logic changes
-                    aggressively clear the cart</h2>
+                <h2 class="action-title">Mandatory checkboxes act as dead links, and location changes aggressively clear
+                    active carts</h2>
 
-                <div class="grid-2" style="align-items: flex-start;">
-                    <div style="text-align: center; border: 1px solid #ddd; padding: 10px; background: #fff;">
+                <div class="grid-2" style="align-items: center;">
+                    <div>
                         <h4 style="margin-top: 0; color: var(--bain-red); font-size: 0.85em; text-align: left;">1.
                             Invisible Modal Friction</h4>
-                        <img src="modal_friction.png" alt="Modal Friction"
-                            style="max-height: 280px; width: 100%; object-fit: contain; margin-bottom: 15px;">
-                        <p style="font-size: 0.6em; text-align: left; margin-top: 0;">Missing the "48h pre-order"
+                        <p style="font-size: 0.6em; text-align: left; margin-bottom: 20px;">Missing the "48h pre-order"
                             checkbox triggers a tiny red error when clicking Add to Cart, making the button practically
                             invisible and appearing "broken" to rushing users.</p>
-                    </div>
-                    <div style="text-align: center; border: 1px solid #ddd; padding: 10px; background: #fff;">
+
                         <h4 style="margin-top: 0; color: var(--bain-red); font-size: 0.85em; text-align: left;">2.
                             Severe Cart Volatility</h4>
-                        <img src="cart_wipe.png" alt="Cart Wipe"
-                            style="max-height: 280px; width: 100%; object-fit: cover; object-position: top; margin-bottom: 15px;">
                         <p style="font-size: 0.6em; text-align: left; margin-top: 0;">Interacting with the order-method
                             header (Pickup vs Delivery) mid-session instantly resets the cart to zero without warning.
                         </p>
+                    </div>
+                    <div style="text-align: center; border: 1px solid #ddd; padding: 10px; background: #fff;">
+                        <img src="le_petit_croissant_deep_dive.webp" alt="Live flow recording"
+                            style="max-height: 400px; width: 100%; object-fit: contain;">
+                        <p style="font-size: 0.5em; color: var(--med-grey); margin-top: 5px;">Animated deep-dive
+                            recording capturing both UX bugs in sequence.</p>
                     </div>
                 </div>
             </section>
