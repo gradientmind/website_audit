@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Petit Croissant - UX Strategy Assessment</title>
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
+
+    <style>
+        /* Consulting Style Theme (Bain-esque) */
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap');
+
+        :root {
+            --bain-red: #cc0000;
+            --dark-grey: #333333;
+            --med-grey: #7f7f7f;
+            --light-grey: #f2f2f2;
+        }
+
+        .reveal {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--dark-grey);
+            background-color: white;
+            /* Container size constraint to prevent ultra-wide stretching */
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for boxed effect on large screens */
+        }
+
+        .reveal .slides section {
+            padding: 5% 8%;
+            box-sizing: border-box;
+            height: 100%;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+        /* Action Titles */
+        .reveal .slides section h1,
+        .reveal .slides section h2,
+        .reveal .slides section h3,
+        .reveal .slides section h4 {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--dark-grey);
+            text-transform: none;
+            text-align: left;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Slide Action Title (Main Message) */
+        .reveal .slides section h2.action-title {
+            font-size: 0.9em;
+            line-height: 1.2;
+            border-bottom: 2px solid var(--bain-red);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Slide Section Header (Eyebrow) */
+        .reveal .slide-eyebrow {
+            text-transform: uppercase;
+            font-size: 0.4em;
+            color: var(--med-grey);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.55em;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        /* Structural Elements */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .box {
+            background: var(--light-grey);
+            padding: 20px;
+            border-top: 4px solid var(--med-grey);
+        }
+
+        .box.highlight {
+            border-top-color: var(--bain-red);
+            background: #fcf0f0;
+        }
+
+        .box h4 {
+            font-size: 0.75em !important;
+            margin-top: 0;
+            color: var(--bain-red) !important;
+            border-bottom: none !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Lists */
+        .reveal ul {
+            padding-left: 20px;
+        }
+
+        .reveal ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .reveal ul li::marker {
+            color: var(--bain-red);
+        }
+
+        /* Matrix / Table */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.45em !important;
+        }
+
+        .matrix-table th {
+            background-color: var(--med-grey);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .matrix-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--light-grey);
+            vertical-align: top;
+        }
+
+        .matrix-table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Footer */
+        .slide-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.4em;
+            color: var(--med-grey);
+            border-top: 1px solid var(--light-grey);
+            padding-top: 10px;
+        }
+
+        /* Chevron Flow */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .flow-step {
+            flex: 1;
+            background: var(--light-grey);
+            padding: 12px;
+            text-align: center;
+            position: relative;
+            font-size: 0.5em;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+
+        .flow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 20px solid var(--light-grey);
+            z-index: 1;
+        }
+
+        .flow-step.friction {
+            background: #fcf0f0;
+            color: var(--bain-red);
+            border-color: var(--bain-red);
+        }
+
+        .flow-step.friction:not(:last-child)::after {
+            border-left-color: #fcf0f0;
+        }
+
+        .alert-text {
+            color: var(--bain-red);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title Slide -->
+            <section style="text-align: center; padding-top: 15vh;">
+                <h1
+                    style="text-align: center; border: none; font-size: 2.5em; margin-bottom: 10px; color: var(--dark-grey);">
+                    UX Strategy & Conversion Assessment</h1>
+                <h3 style="text-align: center; font-weight: 300; color: var(--med-grey); margin-bottom: 50px;">Le Petit
+                    Croissant User Journey Audit</h3>
+                <p style="text-align: center; font-size: 0.6em; color: var(--med-grey);">Prepared for: Management
+                    Team<br>Date: February 2026</p>
+                <div
+                    style="margin-top: 40px; width: 50px; height: 4px; background-color: var(--bain-red); display: inline-block;">
+                </div>
+            </section>
+
+            <!-- Executive Summary -->
+            <section>
+                <div class="slide-eyebrow">Executive Summary</div>
+                <h2 class="action-title">Le Petit Croissant has strong upper-funnel brand appeal, but requires immediate
+                    intervention to remove lower-funnel friction blocking conversion</h2>
+
+                <div class="grid-3">
+                    <div class="box">
+                        <h4>1. Situation</h4>
+                        <p>The current website effectively communicates brand premiumness through high-quality visual
+                            assets and clear value propositions.</p>
+                        <ul style="font-size: 0.9em; margin-top: 10px;">
+                            <li>Strong aesthetic alignment</li>
+                            <li>Clear B2B positioning</li>
+                            <li>Mobile-responsive foundation</li>
+                        </ul>
+                    </div>
+                    <div class="box highlight">
+                        <h4>2. Complication</h4>
+                        <p>The ordering journey lacks cohesive flow and suffers from critical usability breaks. A rigid
+                            "Gatekeeper Modal" blocks entry, while broken product interactions, hidden inventory limits,
+                            and disorienting page reloads create severe user frustration.</p>
+                        <ul style="font-size: 0.9em; margin-top: 10px;">
+                            <li>6 mandatory clicks to begin shopping</li>
+                            <li>Products lack clickable detail views</li>
+                            <li>Disorienting post-form redirection</li>
+                            <li>Hidden location-based stock rules</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h4>3. Resolution</h4>
+                        <p>Complete structural overhaul of the user journey: Defer logistics to checkout, mandate global
+                            inventory transparency upfront, and fix broken UI links to restore user trust and cart
+                            momentum.</p>
+                        <ul style="font-size: 0.9em; margin-top: 10px;">
+                            <li>Defer fulfillment mapping</li>
+                            <li>Enable rich product modals</li>
+                            <li>Ensure linear journey routing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Journey Mapping -->
+            <section>
+                <div class="slide-eyebrow">Current State Assessment</div>
+                <h2 class="action-title">The current user flow introduces a critical "choke point" at the exact moment a
+                    customer exhibits purchase intent</h2>
+
+                <p><strong>Diagnosis of the Customer Journey:</strong> Customers face high cognitive load before
+                    evaluating the product menu.</p>
+
+                <div class="flow-container" style="margin-bottom: 30px;">
+                    <div class="flow-step">1. Click "Menu" <br><span
+                            style="font-weight:normal; font-size:0.8em; color:var(--med-grey)">Low Friction</span></div>
+                    <div class="flow-step friction">2. "Gatekeeper" Modal <br><span
+                            style="font-weight:normal; font-size:0.8em; color:var(--bain-red)">Critical Friction (6
+                            Clicks)</span></div>
+                    <div class="flow-step friction" style="background:#fcf0f0; border-color:var(--bain-red);">3.
+                        Unintended Menu Reload <br><span
+                            style="font-weight:normal; font-size:0.8em; color:var(--bain-red)">Disorientation</span>
+                    </div>
+                    <div class="flow-step friction" style="background:#fcf0f0; border-color:var(--bain-red);">4. Broken
+                        Product Clicks <br><span style="font-weight:normal; font-size:0.8em; color:var(--bain-red)">Dead
+                            Ends</span></div>
+                    <div class="flow-step friction" style="background:#fcf0f0; border-color:var(--bain-red);">5. Hidden
+                        Stock Limits <br><span
+                            style="font-weight:normal; font-size:0.8em; color:var(--bain-red)">Late-Stage
+                            Rejection</span></div>
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <h4 style="font-size: 0.9em; margin-bottom: 5px; color: var(--bain-red);">Symptom Diagnosis</h4>
+                        <ul>
+                            <li><strong>False "Dead Ends" (Modal Friction):</strong> Product modals exist, but many
+                                require mandatory checkboxes (e.g., "48h pre-order"). If a user misses this and clicks
+                                "Add to Cart", a tiny red text prompt appears, making the button feel broken or
+                                unresponsive.</li>
+                            <li><strong>Disorienting Routing:</strong> After enduring the 6-click location modal, the
+                                system abruptly reloads the entire page from the top, forcing the user to re-scroll and
+                                re-orient themselves back to the menu.</li>
+                            <li><strong>Volatile Cart State:</strong> Interacting with the location/delivery method
+                                header mid-session aggressively clears the user's cart without adequate warning,
+                                destroying built purchase momentum.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 0.9em; margin-bottom: 5px;">Business Impact</h4>
+                        <ul>
+                            <li><strong>Eroded Confidence:</strong> Broken clicks and confusing reloads make the site
+                                feel untrustworthy for high-value corporate catering orders.</li>
+                            <li><strong>Guaranteed Abandonment:</strong> Late-stage "out of stock at location" errors
+                                trigger immediate rage-quits. The user journey lacks cohesive logical steps.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deep Dive on the Friction -->
+            <section>
+                <div class="slide-eyebrow">Deep Dive: The "Gatekeeper" Modal</div>
+                <h2 class="action-title">The fulfillment selection mechanism requires six distinct actions, acting as a
+                    barrier to initial product engagement</h2>
+
+                <div class="grid-2" style="align-items: center;">
+                    <div>
+                        <p style="font-weight: bold; margin-bottom: 10px;">The Anatomy of Friction:</p>
+                        <ol
+                            style="font-size: 0.8em; background: #fafafa; padding: 15px 15px 15px 30px; border-left: 3px solid var(--bain-red);">
+                            <li>User clicks "Order Now"</li>
+                            <li><span class="alert-text">Decision:</span> Select "Pickup" or "Delivery"</li>
+                            <li>User waits for map rendering</li>
+                            <li><span class="alert-text">Action:</span> User must locate and click radio button for
+                                specific address</li>
+                            <li><span class="alert-text">Action:</span> Click "Next"</li>
+                            <li><span class="alert-text">Action:</span> Click "Save"</li>
+                        </ol>
+                        <p style="margin-top: 20px;"><strong>Strategic Imperative:</strong> Best-in-class e-commerce
+                            architecture (e.g., modern Shopify/Wix implementations) pushes logistical framing to the
+                            final checkout stage or handles it via lightweight geolocation prompts.</p>
+                    </div>
+                    <div style="text-align: center; border: 1px solid #ddd; padding: 10px; background: #fff;">
+                        <img src="le_petit_croissant_review_1771560333435.webp" alt="Recording reference"
+                            style="max-height: 400px; max-width: 100%; object-fit: contain;">
+                        <p style="font-size: 0.5em; color: var(--med-grey); margin-top: 5px;">Fig 1. Subagent flow
+                            recording capturing the rigid modal requirement.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategic Initiatives Matrix -->
+            <section>
+                <div class="slide-eyebrow">Strategic Recommendations</div>
+                <h2 class="action-title">We recommend prioritizing four core structural fixes to establish a linear,
+                    trusting user journey</h2>
+
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Initiative</th>
+                            <th style="width: 40%;">Proposed Future State</th>
+                            <th style="width: 15%;">Impact</th>
+                            <th style="width: 20%;">Effort / Feasibility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Fulfillment Deferral <br><span style="color:var(--bain-red);">(Priority
+                                        1)</span></strong></td>
+                            <td>Remove the pre-browse fulfillment modal. Allow users to immediately select "Add to Cart"
+                                directly from the product grid. Prompt for delivery/pickup details only upon clicking
+                                "Checkout".</td>
+                            <td style="font-weight: bold; color: green;">High</td>
+                            <td>Medium <br><span style="font-size: 0.8em; color: var(--med-grey);">(Requires CMS/Cart
+                                    logic adjustment)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Fix Product Anchoring & Modals <br><span
+                                        style="color:var(--bain-red);">(Priority 1)</span></strong></td>
+                            <td>Make mandatory modal fields (like pre-order acknowledgements) highly visible. Ensure the
+                                post-location form submission smoothly scrolls the user *down* to the menu grid, never
+                                reloading the page or losing state.</td>
+                            <td style="font-weight: bold; color: green;">High</td>
+                            <td>Low <br><span style="font-size: 0.8em; color: var(--med-grey);">(Basic UI routing
+                                    fix)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Cart Persistence & Filtering</strong></td>
+                            <td>Never clear a user's cart when they modify delivery logic unless absolutely necessary.
+                                Instead, flag incompatible items *within* the cart for removal. Ask for location upfront
+                                using a lightweight dropdown.</td>
+                            <td style="font-weight: bold; color: green;">High</td>
+                            <td>Medium-High <br><span style="font-size: 0.8em; color: var(--med-grey);">(Inventory logic
+                                    integration)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Checkout Refinement</strong></td>
+                            <td>Remove or minimize the default "Tip" percentage prompt in the B2B/Catering context, as
+                                it introduces unexpected friction for corporate buyers.</td>
+                            <td style="font-weight: bold; color: #f39c12;">Low-Med</td>
+                            <td>Low <br><span style="font-size: 0.8em; color: var(--med-grey);">(Checkout settings
+                                    toggle)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Conclusion Slide -->
+            <section>
+                <div class="slide-eyebrow">Path Forward</div>
+                <h2 class="action-title">Implementing the "Fulfillment Deferral" initiative will immediately reduce
+                    drop-off and tangibly scale conversion rates</h2>
+
+                <div style="background: var(--dark-grey); color: white; padding: 30px; margin-top: 40px;">
+                    <h3 style="color: white; border: none; margin-bottom: 10px; font-size: 1.2em;">Next Steps</h3>
+                    <ul style="color: white; font-size: 0.9em; line-height: 1.8;">
+                        <li style="color: white;">Engage technical lead/agency to review Wix/CMS cart logic constraints
+                            regarding deferred fulfillment.</li>
+                        <li style="color: white;">Implement UI Hierarchy Realignment (Homepage CTA & Grid text
+                            truncation) within the current sprint cycle.</li>
+                        <li style="color: white;">Deploy A/B testing on the checkout flow to monitor the impact of
+                            removing tipping terminology for corporate buyers.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'none',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 1.0 /* Hard limit so it never zooms in too aggressively on big screens */
+        });
+    </script>
+</body>
+
+</html>

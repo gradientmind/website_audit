@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Petit Croissant - UX Review & Recommendations</title>
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css" id="theme">
+
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .reveal {
+            font-family: "Inter", sans-serif;
+            color: #2c3e50;
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            font-family: "Playfair Display", serif;
+            color: #1a1a1a;
+            text-transform: none;
+        }
+
+        .reveal .slides section {
+            text-align: left;
+            padding: 5% 10%;
+            box-sizing: border-box;
+            height: 100%;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+        .reveal h1 {
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+
+        .reveal h2 {
+            font-size: 1.3em;
+            color: #d35400;
+        }
+
+        .reveal h3 {
+            font-size: 1.0em;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.55em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .reveal .intro-slide {
+            text-align: center;
+        }
+
+        .reveal .intro-slide h1 {
+            color: #d35400;
+        }
+
+        .highlight {
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        .split {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .media-container {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #eaeaea;
+        }
+
+        .media-container img {
+            max-height: 55vh;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            margin: 0;
+        }
+
+        .recommendation-box {
+            background: #fff3e0;
+            border-left: 6px solid #f39c12;
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .recommendation-box h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #d35400;
+            font-family: "Inter", sans-serif;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pros {
+            color: #27ae60;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cons {
+            color: #c0392b;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.6em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .badge.friction {
+            background: #fae5e5;
+            color: #c0392b;
+        }
+
+        .badge.smooth {
+            background: #eafaf1;
+            color: #27ae60;
+        }
+
+        .badge.neutral {
+            background: #eef2f5;
+            color: #34495e;
+        }
+
+        /* Minimalist list styling */
+        .reveal ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reveal ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .reveal ul.pros-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .reveal ul.cons-list li::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .reveal ul.neutral-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title Slide -->
+            <section class="intro-slide">
+                <h1>Le Petit Croissant</h1>
+                <h3>UX & Ordering Flow Evaluation</h3>
+                <p>An aesthetic and functional critique of the user journey, <br>with targeted recommendations for
+                    conversion improvement.</p>
+                <p style="margin-top: 50px; font-size: 0.6em; color: #7f8c8d;">Use arrow keys to navigate</p>
+            </section>
+
+            <!-- Executive Summary -->
+            <section>
+                <h2>Executive Summary</h2>
+                <div class="split">
+                    <div class="col">
+                        <p>Le Petit Croissant’s website effectively communicates its high-end, artisanal brand through
+                            excellent imagery. The overall structure is clean and professional.</p>
+                        <p>However, the <strong>ordering flow introduces significant friction</strong> early in the
+                            journey. Users are forced through a mandatory "Gatekeeper Modal" (Delivery vs. Pickup
+                            selection), only to be met with disorienting page reloads, unclickable products, and hidden
+                            stock limitations later on.</p>
+                    </div>
+                    <div class="col">
+                        <div class="recommendation-box">
+                            <h4>Core Objective</h4>
+                            <p style="margin:0;">Fix the fragmented user journey by deferring logistical selection,
+                                restoring clickable product modals, and enforcing transparent location-based inventory
+                                upfront.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 1: Homepage -->
+            <section>
+                <h2>1. Homepage & Initial Discovery</h2>
+                <div class="split">
+                    <div class="col" style="flex: 1.2;">
+                        <span class="badge neutral">Discovery Phase</span>
+                        <ul class="pros-list">
+                            <li><strong>Brand Alignment:</strong> High-quality, appetizing imagery instantly establishes
+                                trust and product quality.</li>
+                            <li><strong>Clear Value Prop:</strong> "Early-morning delivery for corporate meetings" is
+                                prominently communicated.</li>
+                        </ul>
+                        <ul class="cons-list" style="margin-top: 20px;">
+                            <li><strong>Weak primary CTA:</strong> The "Click to see our full menu" link is small text.
+                                It struggles to compete visually with the surrounding heavy imagery.</li>
+                        </ul>
+                        <div class="recommendation-box" style="margin-top: 15px; padding: 15px;">
+                            <h4 style="font-size: 0.85em;">Quick Win</h4>
+                            <p style="margin:0; font-size: 0.9em;">Upgrade the text link to a high-contrast, primary
+                                button (e.g., solid orange/brand color) to draw the eye immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: The Ordering Friction -->
+            <section>
+                <h2>2. The "Gatekeeper" Modal</h2>
+                <div class="split">
+                    <div class="col">
+                        <span class="badge friction">High Friction Point</span>
+                        <p>When a user attempts to order, they immediately hit a barrier. The flow requires excessive
+                            steps just to set a preference:</p>
+                        <ol style="font-size: 0.8em; line-height: 1.8; color: #c0392b; font-weight: 500;">
+                            <li>Click "Order Now"</li>
+                            <li>Select "Pickup" or "Delivery"</li>
+                            <li>Wait for map/locations to update</li>
+                            <li>Click the radio button for the specific location</li>
+                            <li>Click "Next", then Click "Save"</li>
+                            <li><span style="color:#e67e22; font-weight:bold;">Disorientation:</span> The page
+                                completely reloads from the top instead of smoothly scrolling.</li>
+                        </ol>
+                        <p><strong>Impact:</strong> 6 clicks required just to start. The subsequent full-page reload
+                            breaks momentum and disorients the user entirely.</p>
+                    </div>
+                    <div class="col media-container">
+                        <!-- Demonstrates recording reference -->
+                        <img src="le_petit_croissant_review_1771560333435.webp" alt="Subagent Recording of the flow"
+                            style="object-fit: contain;">
+                        <p style="font-size: 0.5em; margin-bottom: 0;">Session Recording Snippet</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Product & Menu Structure -->
+            <section>
+                <h2>3. Menu & Product Selection</h2>
+                <div class="split">
+                    <div class="col">
+                        <span class="badge smooth">Smooth Experience</span>
+                        <ul class="pros-list">
+                            <li><strong>Sticky Navigation:</strong> Category navigation anchors at the top, allowing for
+                                rapid jumping between pastry types.</li>
+                        </ul>
+                        <ul class="cons-list" style="margin-top: 20px;">
+                            <li><strong>False "Dead Ends" (Modal Friction):</strong> Product modals exist but ask for
+                                mandatory checkbox acknowledgements (e.g. 48h pre-order notice) that are easily missed.
+                                When missed, clicking "Add to Cart" does nothing, making the site feel broken.</li>
+                            <li><strong>Volatile Cart State:</strong> Changing locations or delivery methods mid-session
+                                clears all items from the cart, destroying the user's progress entirely.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: Checkout Experience -->
+            <section>
+                <h2>4. Cart & Checkout</h2>
+                <div class="split">
+                    <div class="col">
+                        <span class="badge neutral">Standardized Flow</span>
+                        <ul class="pros-list">
+                            <li><strong>Cart Drawer:</strong> Extremely efficient. Allows users to review their order
+                                without losing their place on the menu.</li>
+                            <li><strong>Financial Clarity:</strong> GST and subtotals are broken down cleanly before the
+                                final step.</li>
+                        </ul>
+                        <ul class="cons-list" style="margin-top: 20px;">
+                            <li><strong>Unnecessary UI Elements:</strong> The checkout page prominently asks for a "Tip"
+                                (0%, 5%, 10%, 15%). For self-pickup or large B2B corporate orders, this can feel awkward
+                                and unexpected.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategic Recommendations -->
+            <section>
+                <h2>Strategic Action Plan</h2>
+
+                <h3 style="margin-top: 40px; font-size: 1.2em; color:#d63031;">1. Fix the Journey Mechanics (Critical)
+                </h3>
+                <p>Highlight mandatory form fields inside the product modals to stop the "Add to Cart" button from
+                    feeling broken. Stop full-page reloads after the location form—smoothly auto-scroll the user back
+                    down to the menu grid instead.</p>
+
+                <h3 style="margin-top: 30px; font-size: 1.2em; color:#0984e3;">2. Ensure Cart Persistence</h3>
+                <p>Never wipe a user's cart simply because they interacted with the location/delivery method header. If
+                    inventory relies on location, flag incompatible items *inside* the cart view rather than silently
+                    deleting everything.</p>
+
+                <h3 style="margin-top: 30px; font-size: 1.2em; color:#00b894;">3. Defer Logistical Framing</h3>
+                <p>Whenever possible, allow users to add items to their cart friction-free. Only trigger the heavy
+                    Delivery/Pickup workflow when they attempt to click "Checkout".</p>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="intro-slide">
+                <h2>Thank You</h2>
+                <p>Implementing these focused UX improvements will drastically reduce <br>early drop-offs and improve
+                    the overall conversion rate.</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'fade', // smooth fading
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 1.0 /* Hard limit so it never zooms in too aggressively */
+        });
+    </script>
+</body>
+
+</html>
