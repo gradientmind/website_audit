@@ -298,42 +298,47 @@
 
             <!-- Step 3: Product & Menu Structure -->
             <section>
-                <h2>3. Menu & Product Selection</h2>
-                <div class="split">
-                    <div class="col">
-                        <span class="badge smooth">Smooth Experience</span>
+                <h2>3. Menu & Product Discovery</h2>
+                <div class="split" style="align-items: flex-start;">
+                    <div class="col" style="flex: 1.2;">
+                        <span class="badge friction">Broken Interaction</span>
                         <ul class="pros-list">
                             <li><strong>Sticky Navigation:</strong> Category navigation anchors at the top, allowing for
-                                rapid jumping between pastry types.</li>
+                                rapid jumping.</li>
                         </ul>
                         <ul class="cons-list" style="margin-top: 20px;">
-                            <li><strong>False "Dead Ends" (Modal Friction):</strong> Product modals exist but ask for
-                                mandatory checkbox acknowledgements (e.g. 48h pre-order notice) that are easily missed.
-                                When missed, clicking "Add to Cart" does nothing, making the site feel broken.</li>
-                            <li><strong>Volatile Cart State:</strong> Changing locations or delivery methods mid-session
-                                clears all items from the cart, destroying the user's progress entirely.</li>
+                            <li><strong>False "Dead Ends":</strong> Modals contain mandatory checkboxes (e.g. 48h
+                                pre-order). If missed, clicking "Add to Cart" does nothing.</li>
+                            <li><strong>Impact:</strong> Users assume the site is broken and abandon discovery.</li>
                         </ul>
+                    </div>
+                    <div class="col media-container" style="flex: 0.8;">
+                        <img src="modal_friction.png" alt="Modal friction" style="max-height: 40vh; object-fit: cover;">
+                        <p style="font-size: 0.5em; margin-top: 5px; color: #7f8c8d;">Tiny red error obscures the path
+                        </p>
                     </div>
                 </div>
             </section>
 
             <!-- Step 4: Checkout Experience -->
             <section>
-                <h2>4. Cart & Checkout</h2>
-                <div class="split">
-                    <div class="col">
-                        <span class="badge neutral">Standardized Flow</span>
+                <h2>4. Cart & Checkout State</h2>
+                <div class="split" style="align-items: flex-start;">
+                    <div class="col" style="flex: 1.2;">
+                        <span class="badge friction">Critical Flaw</span>
                         <ul class="pros-list">
-                            <li><strong>Cart Drawer:</strong> Extremely efficient. Allows users to review their order
-                                without losing their place on the menu.</li>
-                            <li><strong>Financial Clarity:</strong> GST and subtotals are broken down cleanly before the
-                                final step.</li>
+                            <li><strong>Cart Drawer:</strong> Efficient side-drawer design prevents losing place.</li>
                         </ul>
                         <ul class="cons-list" style="margin-top: 20px;">
-                            <li><strong>Unnecessary UI Elements:</strong> The checkout page prominently asks for a "Tip"
-                                (0%, 5%, 10%, 15%). For self-pickup or large B2B corporate orders, this can feel awkward
-                                and unexpected.</li>
+                            <li><strong>Volatile Cart State:</strong> Changing locations or delivery methods mid-session
+                                clears all items from the cart instantly.</li>
+                            <li><strong>Impact:</strong> Destroys built purchase momentum.</li>
                         </ul>
+                    </div>
+                    <div class="col media-container" style="flex: 0.8;">
+                        <img src="cart_wipe.png" alt="Cart Wipe"
+                            style="max-height: 40vh; object-fit: cover; object-position: top;">
+                        <p style="font-size: 0.5em; margin-top: 5px; color: #7f8c8d;">Logic changes wipe the cart</p>
                     </div>
                 </div>
             </section>
